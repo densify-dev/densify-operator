@@ -12,7 +12,7 @@ The Densify-Operator will deploy the Densify Container Data Collection which col
 - Kube-state-metrics (https://github.com/kubernetes/kube-state-metrics)
 
 ## Documenetation
-* [Densify Docs](https://www.densify.com/docs/Content/Welcome.htm)
+* [Official Densify Doc Site](https://www.densify.com/docs/Content/Welcome.htm)
 
 ## License
 
