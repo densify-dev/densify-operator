@@ -6,7 +6,7 @@ subjects:
 - kind: ServiceAccount
   name: densify-operator
   # Replace this with the namespace the operator is deployed in.
-  namespace: densify
+  namespace: default
 roleRef:
   kind: ClusterRole
   name: densify-operator

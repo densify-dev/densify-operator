@@ -1,0 +1,5 @@
+channels:
+- currentCSV: densify-operator.v1.0.0
+  name: v1.0
+defaultChannel: v1.0
+packageName: densify-operator

@@ -1,9 +1,9 @@
-FROM quay.io/operator-framework/helm-operator:v0.19.2
+FROM quay.io/operator-framework/helm-operator:v0.19.4
 
 LABEL name="Densify Operator" \
       vendor="Densify" \
       maintainer="support@densify.com" \
-      version="v0.0.1" \
+      version="v1.0.0" \
       release="1" \
       summary="Densify Operator to deploy Densify Container Data Collection for Kubernetes" \
       description="This Operator will deploy the Densify Container Data Collection Forwarder to the cluster"

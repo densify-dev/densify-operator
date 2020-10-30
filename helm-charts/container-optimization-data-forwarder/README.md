@@ -1,70 +1,43 @@
-# Densify Operator
+# Densify Container Optimization Helm Chart
 
 <img src="https://www.densify.com/wp-content/uploads/densify.png" width="300">
 
-The Densify-Operator deploys the Densify Container Data Collection utility, which collects data from a Prometheus server and sends it to a Densify instance for analysis. 
+## Introduction
+
+This chart deploys the Densify Container Optimization Data Forwarder, which is scheduled to collect data from a Prometheus server and sends it to a Densify instance for analysis. 
+
+## Details
+
+* Deploys configmap, job, and cronjob.
+* Cronjob is scheduled to run hourly to collect data from Prometheus and forwards it to Densify for analysis.
+
 
 ## Prerequisites
 
-- Densify account, which is provided with a Densify subscription or through a free trial (https://www.densify.com/service/signup)
-- Prometheus (https://prometheus.io/)
-- Kube-state-metrics (https://github.com/kubernetes/kube-state-metrics)
+* A Densify account, which is provided with a Densify subscription or through a free trial (https://www.densify.com/service/signup)
+* Kubernetes or OpenShift
+* Prometheus (https://prometheus.io/)
+* Kube-state-metrics version 1.5.0+ (https://github.com/kubernetes/kube-state-metrics)
+* Node Exporter (https://hub.docker.com/r/prom/node-exporter) (optional)
 
 ## Installing
 
-### Basic Install
-Deploy the basic Densify Container Data Collection with min configuration
-* Need to update the Densify hostname, user and encrypted password, Prometheus hostname and port, and zip name
+To deploy Data Forwarder with Helm, follow these steps below:
+1. Clone or update the repo.
+2. Specify the relevant parameters for connectivity in values.yaml. (See the [Configuration](#Configuration) parameters table below.)
+3. Navigate to the helm directory:
 ```
-apiVersion: densify.com/v1
-kind: Densify
-metadata:
-  name: densify
-spec:
-  config:
-    densify:
-      hostname: <instance>.densify.com
-      port: 443
-      protocol: https
-      user: <densify user>
-      epassword: <encrypted densify user password>
-    prometheus:
-      hostname: <prometheus hostname>
-      port: <prometheus port>
-      protocol: http
-    zipname: data/<zip name>
+cd helm
+```
+4. Execute the command: 
+```
+helm install . -f values.yaml
 ```
 
-### Install Using a Secret for User and Password
-Deploy the Densify Container Data Collection using a secret to store the username and encrypted password
-* Create a secret that contains the keys username and epassword 
-```
-oc -n "<namespace deploying operator into>" create secret generic densify-secret \
-  --from-literal=username="<densify username>" \
-  --from-literal=epassword="<encrypted password>" \
-```
-* Need to update the Densify hostname, Prometheus hostname and port, and zip name
-```
-apiVersion: densify.com/v1
-kind: Densify
-metadata:
-  name: densify
-spec:
-  config:
-    densify:
-      hostname: <instance>.densify.com
-      port: 443
-      protocol: https
-      UserSecretName: densify-secret
-    prometheus:
-      hostname: <prometheus hostname>
-      port: <prometheus port>
-      protocol: http
-    zipname: data/<zip name>
-```
+
 ## Configuration
  
-The config parameters are the same set as the Densify Operator helm chart:
+The following table lists configuratin parameters in values.yaml and their default values.
 
 | Parameter        | Description           | Default |
 | ------------- |-------------|--------|
@@ -107,12 +80,14 @@ The config parameters are the same set as the Densify Operator helm chart:
 | `resources` | The CPU/Memory resource requests/limits. | `{}` |
 | `tolerations` | The toleration labels for pod assignments. | `{}` |
 
-## Limitation
-* OS Support: Linux
-* Architecture: AMD64
+## Limitations
+* Supported Architecture: AMD64
+* Supported OS: Linux
 
 ## Documentation
-* [Densify Feature Description and Reference Guide](https://www.densify.com/docs/Content/Welcome.htm)
+
+* [Densify Solutions > Container Platforms](https://www.densify.com/solutions/container-optimization)
+* [Densify Feature Description and Reference Guide > Optimizing Your Containers](https://www.densify.com/docs/Content/Densify_Com/Optimizing_Your_Containers.htm)
 
 ## License
 Apache 2 Licensed. See [LICENSE](LICENSE) for full details.

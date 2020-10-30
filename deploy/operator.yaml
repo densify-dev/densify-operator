@@ -16,7 +16,8 @@ spec:
       containers:
         - name: densify-operator
           # Replace this with the built image name
-          image: registry.connect.redhat.com/densify/densify-operator:release-0.0.2
+          image: quay.io/densify/densify-operator:v1.0.0
+          #image: registry.connect.redhat.com/densify/densify-operator:release-0.0.2
           imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
@@ -30,4 +31,4 @@ spec:
             - name: OPERATOR_NAME
               value: "densify-operator"
             - name: RELATED_IMAGE_DENSIFY
-              value: "registry.connect.redhat.com/densify/container-data-collection-forwarder:release-2.2.1-beta-2"
+              value: "densify/container-optimization-data-forwarder:latest"
