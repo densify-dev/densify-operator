@@ -109,8 +109,8 @@ spec:
     # Installing
     
     ## Basic Install
-    Deploy the basic Densify Container Data Collection with min configuration
-    * Need to update the Densify hostname, user and encrypted password, Prometheus hostname and port, and zip name
+    The instruction below deploys the basic Densify Container Data Collection with minimal configuration.
+    1. update the Densify hostname, user and encrypted password, Prometheus hostname and port, and zip filename:
     ```
     apiVersion: densify.com/v1
     kind: Densify
@@ -132,14 +132,14 @@ spec:
     ```
     
     ## Install Using a Secret for User and Password
-    Deploy the Densify Container Data Collection using a secret to store the username and encrypted password
-    * Create a secret that contains the keys username and epassword 
+    The instructions below deploy the Densify Container Data Collection using a secret to store the username and encrypted password.
+    1. Create a secret that contains the username and epassword keys.
     ```
     oc -n "<namespace deploying operator into>" create secret generic densify-secret \
       --from-literal=username="<densify username>" \
       --from-literal=epassword="<encrypted password>" \
     ```
-    * Need to update the Densify hostname, Prometheus hostname and port, and zip name
+    2. Update the Densify hostname, Prometheus hostname and port, and zip filename:
     ```
     apiVersion: densify.com/v1
     kind: Densify
@@ -160,7 +160,7 @@ spec:
     ```
     # Configuration
      
-    The config parameters are the same set as the Densify Operator helm chart:
+    The configuration parameters are the same set as the [Densify Forwarder](https://github.com/densify-dev/helm-charts/tree/master/charts/container-optimization-data-forwarder#configuration) helm chart:
 
     | Parameter        | Description           | Default |
     | ------------- |-------------|--------|
