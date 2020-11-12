@@ -4,7 +4,7 @@
 nameOverride: densify-forwarder
 
 # application image
-image:  densify/container-optimization-data-forwarder:latest
+image:  registry.connect.redhat.com/densify/container-data-collection-forwarder:latest
 pullPolicy: Always
 
 # application configuration
@@ -20,11 +20,11 @@ config:
     # Port of Densify instance
     port: 443
     # User name to authenticate with Densify instance
-    user: <username>
+#    user: <username>
     # Password to authenticate with Densify instance. Only specify a password or an encrypted password (not both).
 #    password: <password>
-    # Encrypted password to authenticate with Densify instance. Only specify a password or an encrypted password (not both).
-     epassword: <epassword>
+    #Encrypted password to authenticate with Densify instance. Only specify a password or an encrypted password (not both).
+#    epassword: <epassword>
     # Set only the above username and (e)password settings or this Secret not both.
     # Secret must contain 2 fields username and epassword that will be used to connect to Densify.
 #    UserSecretName: <name of secret to use>
@@ -39,7 +39,7 @@ config:
     # Port of Prometheus instance
     port: <prometheus port>
     # Cluster name that will appear in Densify UI. If this parameter is disabled, then the specified Prometheus hostname is used to identify the cluster in the Densify UI
-    clustername: <cluster name>
+#    clustername: <cluster name>
     # Interval to collect data
 #    interval: <hours/days>
     # The size of the interval to collect data from Prometheus

@@ -83,7 +83,9 @@ The configuration parameters are the same set as the [Densify Forwarder](https:/
 | `config.prometheus.port` | Specify the Prometheus service connection port. | `9090` |
 | `config.prometheus.clustername` | Specify the name to identify the cluster in the Densify UI. If this parameter is disabled, then the specified Prometheus hostname is used to identify the cluster in the Densify UI. | `nil` |
 | `config.zipname` | Specify the name of the zipfile to send to Densify. | `data/nil` |
-| `authenticated.create` | This flag controls the deployment of service account, cluster role, and cluster role binding in a secured Prometheus server environment. If OpenShift is used, then this flag should be set to true. | `true` |
+| `rbac.create` | This flag indicates if RBAC resources are created and used. This flag must be "true" for API access to Prometheus in a secured cluster. | `true` |
+| `serviceAccount.create` | Specify "true" to create a Service Account with the name specified by the serviceAccount.name parameter (see below). | `true` |
+| `serviceAccount.name` | Specify the name of the Service Account. If this parameter is disabled, then the Helm chart name is used as the Service Account name. You can specify an existing Service Account name to use, if serviceAccount.create == "false". | `nil` |
 
 Refer to the [Densify Forwarder](https://github.com/densify-dev/helm-charts/tree/master/charts/container-optimization-data-forwarder#configuration) helm chart for the full list of parameters.
 
