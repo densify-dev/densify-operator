@@ -1,8 +1,13 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "common.fullname" . }}-config
+  name: {{ template "common.fullname" . }}
   namespace: {{ template "common.namespace" . }}
+  labels:
+   app: {{ template "common.name" . }}
+   chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+   release: {{ .Release.Name }}
+   heritage: {{ .Release.Service }}
 data:
   config.properties : |
    #
@@ -21,8 +26,9 @@ data:
    protocol {{ .Values.config.densify.protocol }}
    port {{ .Values.config.densify.port }}
    endpoint /CIRBA/api/v2/
-   
+{{- if .Values.config.densify.user }}
    user {{ .Values.config.densify.user }}
+{{- end }}
 {{- if .Values.config.densify.password }}
    password {{ .Values.config.densify.password }}
 {{- end }}

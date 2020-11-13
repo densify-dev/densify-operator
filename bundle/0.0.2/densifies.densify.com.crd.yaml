@@ -16,7 +16,6 @@ spec:
   validation:
     openAPIV3Schema:
       type: object
-      x-kubernetes-preserve-unknown-fields: true
   version: v1
   versions:
   - name: v1
@@ -27,7 +26,7 @@ spec:
     storage: false
 status:
   acceptedNames:
-    kind: ""
-    plural: ""
+    kind: ''
+    plural: ''
   conditions: null
   storedVersions: null

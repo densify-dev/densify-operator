@@ -1,0 +1,201 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: "[\n  {\n    \"apiVersion\": \"densify.com/v1\",\n    \"kind\":\
+      \ \"Densify\",\n    \"metadata\": {\n      \"name\": \"example-densify\"\n \
+      \   },\n    \"spec\": {\n      \"affinity\": {},\n      \"config\": {\n    \
+      \    \"cronJob\": {\n          \"schedule\": \"0 * * * *\"\n        },\n   \
+      \     \"debug\": false,\n        \"densify\": {\n          \"hostname\": \"\\\
+      u003cinstance\\u003e.densify.com\",\n          \"port\": 443,\n          \"\
+      protocol\": \"https\",\n          \"user\": \"\\u003cdensify user\\u003e\",\n\
+      \          \"epassword\": \"\\u003cencrypted densify user password\\u003e\"\n\
+      \        },\n        \"prometheus\": {\n          \"hostname\": \"\\u003cprometheus\
+      \ hostname\\u003e\",\n          \"port\": \"\\u003cprometheus port\\u003e\"\
+      ,\n          \"protocol\": \"http\"\n        },\n        \"zipEnabled\": true,\n\
+      \        \"zipname\": \"data/\\u003czip name\\u003e\"\n      },\n      \"image\"\
+      : \"densify/container-optimization-data-forwarder:release-2.2.1-beta\",\n  \
+      \    \"nodeSelector\": {},\n      \"pullPolicy\": \"Always\",\n      \"replicaCount\"\
+      : 1,\n      \"resources\": {}\n    }\n  }\n]"
+    capabilities: Basic Install
+    categories: Monitoring
+    category: Monitoring
+    certified: 'false'
+    containerImage: registry.connect.redhat.com/densify/densify-operator
+    createdAt: 2020-08-19T:12:00:00Z
+    description: Densify Container Resource Management works to identify better supply
+      (resource) allocations for your underlying containers based on key technical,
+      business and cost criteria.  Any infrastructure changes recommended by Densify
+      can be moderated through your existing ITSM framework / processes.
+    operators.operatorframework.io/builder: operator-sdk-v0.19.2
+    operators.operatorframework.io/project_layout: helm
+    repository: https://github.com/densify-dev/Container-Optimization-Data-Forwarder
+    support: Densify
+  creationTimestamp: null
+  name: densify-operator.v0.0.2
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: Densify Operator that will deploy Densify Container Data Collection
+        in the cluster.
+      displayName: Densify Operator
+      kind: Densify
+      name: densifies.densify.com
+      version: v1
+  description: Densify Container Resource Management works to identify better supply
+    (resource) allocations for your underlying containers based on key technical,
+    business and cost criteria.  Any infrastructure changes recommended by Densify
+    can be moderated through your existing ITSM framework / processes.
+  displayName: Densify Operator
+  icon:
+  - base64data: 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
+    mediatype: image/png
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - ''
+          resources:
+          - namespaces
+          verbs:
+          - get
+        - apiGroups:
+          - ''
+          resources:
+          - configmaps
+          - secrets
+          verbs:
+          - '*'
+        - apiGroups:
+          - ''
+          resources:
+          - events
+          verbs:
+          - create
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - clusterrolebindings
+          - clusterroles
+          verbs:
+          - '*'
+        - apiGroups:
+          - ''
+          resources:
+          - configmaps
+          - serviceaccounts
+          verbs:
+          - '*'
+        - apiGroups:
+          - batch
+          resources:
+          - cronjobs
+          - jobs
+          verbs:
+          - '*'
+        - apiGroups:
+          - monitoring.coreos.com
+          resources:
+          - servicemonitors
+          verbs:
+          - get
+          - create
+        - apiGroups:
+          - apps
+          resourceNames:
+          - densify-operator
+          resources:
+          - deployments/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - ''
+          resources:
+          - pods
+          verbs:
+          - get
+        - apiGroups:
+          - apps
+          resources:
+          - replicasets
+          - deployments
+          verbs:
+          - get
+        - apiGroups:
+          - densify.com
+          resources:
+          - '*'
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        serviceAccountName: densify-operator
+      deployments:
+      - name: densify-operator
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              name: densify-operator
+          strategy: {}
+          template:
+            metadata:
+              labels:
+                name: densify-operator
+            spec:
+              containers:
+              - env:
+                - name: WATCH_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.annotations['olm.targetNamespaces']
+                - name: POD_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: OPERATOR_NAME
+                  value: densify-operator
+                - name: RELATED_IMAGE_DENSIFY
+                  value: registry.connect.redhat.com/densify/container-data-collection-forwarder:release-2.2.1-beta-2
+                image: registry.connect.redhat.com/densify/densify-operator:release-0.0.2
+                imagePullPolicy: Always
+                name: densify-operator
+                resources: {}
+              serviceAccountName: densify-operator
+    strategy: deployment
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - Densify
+  - Monitoring
+  links:
+  - name: Densify
+    url: https://www.densify.com
+  - name: Densify Container Optimization
+    url: https://www.densify.com/solutions/container-optimization
+  maintainers:
+  - email: support@densify.com
+    name: support
+  maturity: alpha
+  provider:
+    name: Densify
+  version: 0.0.2
+status:
+  certsLastUpdated: null
+  certsRotateAt: null
+  lastTransitionTime: null
+  lastUpdateTime: null
