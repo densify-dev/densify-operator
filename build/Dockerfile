@@ -1,4 +1,4 @@
-FROM quay.io/operator-framework/helm-operator:v1.8.0
+FROM quay.io/operator-framework/helm-operator:v1.16.0
 
 LABEL name="Densify Operator" \
       vendor="Densify" \
